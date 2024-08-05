@@ -67,7 +67,7 @@
     const password = passwordInput.value;
     let name = nameInput.value;
     
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; 
+    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/ 
     const mail_isValid = emailPattern.test(mail); 
     if(!mail_isValid){
         errorBoxMail.innerText = 'Invalid Email'
