@@ -130,6 +130,9 @@
                     console.log(data);  
                     window.location.href = '/login';
                 }
+                if(data.invalidmail){
+                    errorBoxPassword.innerText ='User with this mail already exist';
+                }
             } catch (error) {
                 console.error("Error:", error);
             }
