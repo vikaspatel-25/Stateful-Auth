@@ -1,0 +1,189 @@
+.container{
+    width: 100%;
+    max-width: 425px;
+    background-color: transparent;
+    height: fit-content; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;      
+}
+.title-container{
+    width: 85%;
+    background-color: transparent;
+    height: fit-content;
+    font-size: 2.5em;
+    text-overflow: ellipsis;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    background: linear-gradient(to right,#667eea, #764ba2,#e46868);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.login-container{
+    height: fit-content;
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    margin-top: 30px;
+    background-color: #1e1f20;
+    border-radius: 16px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+.field-container{
+    height:fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    /* margin-bottom: 20px; */
+}
+.text-box{
+    height: 10px;
+    width: 85%;
+    font-family: "Roboto",sans-serif;
+    /* font-weight: 500; */
+    color: #ccd8ef;
+    font-size: 13px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+.text-container{
+    height: fit-content;
+    width: 85%;
+    font-family: "Roboto",sans-serif;
+    color: #ccd8ef;
+    margin-top: 25px;
+    font-size: 14px;
+}
+.heading{
+    width: 85%;
+    height: fit-content;
+    font-family: "Roboto",sans-serif;
+    color: #ccd8ef;
+    font-weight: bold;
+    font-size: 18px;
+}
+.error-box{
+    height: fit-content;
+    width: 85%;
+    max-width: 237px;
+    font-family: "Roboto",sans-serif;
+    font-size: 12px;
+    color: red;
+    text-overflow:ellipsis;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+
+
+
+.button {
+    align-items: center;
+    background-color: #327cf5;
+    border: 0;
+    border-radius: 100px;
+    box-sizing: border-box;
+    color: #ccd8ef;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 20px;
+    max-width: 480px;
+    min-height: 30px;
+    min-width: 0px;
+    overflow: hidden;
+    padding: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    touch-action: manipulation;
+    transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    }
+    
+    .button:hover,
+    .button:focus { 
+    background-color: #16437E;
+    color: #ffffff;
+    }
+    
+    .button:active {
+    background: #003569;
+    color: rgb(255, 255, 255, .7);
+    }
+    
+    .button:disabled { 
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, .08);
+    color: rgba(0, 0, 0, .3);
+    }
+
+
+  .material-field {
+    position: relative;
+  }
+  
+  .material-field-input {
+    font-size: 18px;
+    padding: 20px 15px;
+    margin-bottom: 20px;
+    width: calc(100% - 30px);
+    display: flex;
+    color: #ccd8ef;
+    background-color: #1e1f20;
+    /* border-radius: 5px;  */
+    border-bottom: 2px solid #444645; 
+    border-right: 1px solid transparent ;
+    border-top: none;
+    border-left:none ;
+    outline: none;
+
+  }
+  .material-field-input:valid ~ .material-field-label,
+  .material-field-input:focus ~ .material-field-label {
+    color: #ccd8ef;
+    transform: scale(0.75) translate(-13px, -40px);
+
+  }
+
+  .material-field-input:focus{
+    border-bottom: 2px solid ; 
+
+  }
+  .material-field-label {
+    color: #ccd8ef;
+    background: #1e1f20;
+    font-size: 14px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    top: 25px;
+    left: 0px;
+    padding: 0 8px;
+    transition: 150ms cubic-bezier(0.4, 0, 0.2, 1) all;
+    -moz-transition: 150ms cubic-bezier(0.4, 0, 0.2, 1) all;
+    -webkit-transition: 150ms cubic-bezier(0.4, 0, 0.2, 1) all;
+  }
+
+ 

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+    *{
+        font-family:"Roboto",sans-serif;
+    }
+</style>
+</head>
+<body id="body" class="body" style="height: 100vh; width: 100vw; background-color: #131313;margin: 0;display: flex;justify-content: center;">
+    
+ <div id="container" class="container">
+    <div id="titleContainer" class="title-container">Create Account</div>
+    <div id="loginContainer" class="login-container">
+        <div id="nameContainer" class="field-container" style="margin-bottom: 25px;" >
+            <div class="material-field">      
+                <input id="nameInput" class="material-field-input" required="on" autocomplete="off" type="text">
+                <label class="material-field-label">Name</label>
+            </div>
+             <div id="errorBoxName" class="error-box"></div>
+        </div>
+        <div id="emailContainer" class="field-container" style="margin-top: 0px;" >
+            <div class="material-field">      
+                <input id="mailInput" class="material-field-input" required="on" autocomplete="off" type="text">
+                <label class="material-field-label">E-Mail</label>
+            </div>
+            <div id="errorBoxMail" class="error-box"></div>
+        </div>
+        <div id="passwordContainer" class="field-container" style="margin-bottom: 25px;" >
+            <div class="material-field">      
+                <input id="passwordInput" class="material-field-input" required="on" autocomplete="off" type="password">
+                <label class="material-field-label">Create Password</label>
+            </div>
+            <div id="errorBoxPassword" class="error-box"></div>
+         </div>
+        <button id="signupButton" type="button" style="height: 40px; width: 150px;" class="button">Sign Up</button>
+    </div>
+    <div id="textBox" class="text-box">Already have an account?</div>
+    <button id="loginButton2" type="button" style="height: 40px; width:220px;margin-top:30px;margin-bottom: 10px;" class="button"><a style="text-decoration: none;color: #c8c8df;">Login</a></button>
+
+ </div>
+
+ <script>//taking refferences of html element
+    const mailInput = document.querySelector("#mailInput");
+    const passwordInput = document.querySelector("#passwordInput");
+    const loginButton = document.querySelector("#loginButton");
+    const signupButton2 = document.querySelector("#signupButton2");
+    const errorBoxPassword = document.querySelector("#errorBoxPassword");
+    const errorBoxMail = document.querySelector("#errorBoxMail");
+    const nameInput = document.querySelector("#nameInput");
+    const errorBoxName = document.querySelector("#errorBoxName");
+    const signupButton = document.querySelector("#signupButton");
+    const loginButton2 = document.querySelector("#loginButton2");
+    
+    
+    //checking if mail is correct
+    function emailPasswordNameValidator(){
+       
+    const mail = mailInput.value;
+    const password = passwordInput.value;
+    let name = nameInput.value;
+    
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; 
+    const mail_isValid = emailPattern.test(mail); 
+    if(!mail_isValid){
+        errorBoxMail.innerText = 'Invalid Email'
+    }
+    
+    const passwordPattern = /^[^\s]{4,}$/;
+    const password_isValid = passwordPattern.test(password);
+    if(!password_isValid){
+        errorBoxPassword.innerText = 'Password should be minimum of 4 characters and must not include spaces'
+    }
+    
+    const namePattern = /^[A-Za-z\s]+$/;
+    name = name.trim();
+    const name_isValid = namePattern.test(name);
+    if(!name_isValid){
+        errorBoxName.innerText ='Name can only consist characters and spaces';
+    }
+    if(name_isValid){
+    name = name.split(' ').map(word =>word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+    console.log(name)
+    }
+    
+    if(name_isValid && password_isValid && mail_isValid){
+        console.log("calling method");
+        console.log(name);console.log(mail);console.log(password);
+        sendData(name,mail,password);
+        
+    }
+    
+    }
+    
+    function initerrorboxMail(){
+        errorBoxMail.innerText = '';
+    }
+    function initerrorboxPassword(){
+        errorBoxPassword.innerText = '';
+    }
+    function initerrorboxName(){
+        errorBoxName.innerText = '';
+    }
+
+    
+    async function sendData(name, mail, password) {
+            try {
+                const response = await fetch('/auth/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: mail,
+                        password: password
+                    })
+                   
+                });
+
+                const data = await response.json();
+                if(data.success){
+                    console.log(data);  
+                    window.location.href = '/login';
+                }
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+
+    
+    //event listeners for buttons
+    signupButton.addEventListener('click',emailPasswordNameValidator);
+    mailInput.addEventListener('click',initerrorboxMail);
+    passwordInput.addEventListener('click',initerrorboxPassword);
+    nameInput.addEventListener('click',initerrorboxName);
+    
+    loginButton2.addEventListener('click',()=>{window.location.href ='/login'});
+    </script>
+
+</body>
+</html>

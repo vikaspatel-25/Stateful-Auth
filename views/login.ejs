@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+    *{
+        font-family:"Roboto",sans-serif;
+    }
+</style>
+</head>
+<body id="body" class="body" style="height: 100vh; width: 100vw; background-color: #131313;margin: 0;display: flex;justify-content: center;">
+    
+ <div id="container" class="container">
+    <div id="titleContainer" class="title-container">Stateful Authentication</div>
+    <div id="loginContainer" class="login-container">
+        <div id="emailContainer" class="field-container" >
+            <div class="material-field">      
+                <input id="mailInput" class="material-field-input" required="on" autocomplete="off" type="text">
+                <label class="material-field-label">Mail</label>
+            </div>
+            <div id="errorBoxMail" class="error-box"></div>
+
+        </div>
+        <div id="passwordContainer" class="field-container" style="margin-bottom: 25px;" >
+            <div class="material-field">      
+                <input id="passwordInput" class="material-field-input" required="on" type="password">
+                <label class="material-field-label">Password</label>
+            </div>
+            <div id="errorBoxPassword" class="error-box"></div>
+
+        </div>
+        
+        <button id="loginButton" type="button" style="height: 40px; width: 150px;" class="button" ><a style="text-decoration: none;color: #c8c8df;">Login</a></button>
+    </div>
+    <div id="textBox" class="text-box">Don't have an account?</div>
+    <button id="signupButton2" type="button" style="height: 40px; width:220px;margin-top:30px;margin-bottom: 10px;" class="button"><a  style="text-decoration: none;color: #c8c8df;">Sign Up</a></button>
+
+ </div>
+
+<script>
+
+    //taking refferences of html element
+const mailInput = document.querySelector("#mailInput");
+const passwordInput = document.querySelector("#passwordInput");
+const loginButton = document.querySelector("#loginButton");
+const signupButton2 = document.querySelector("#signupButton2");
+const errorBoxPassword = document.querySelector("#errorBoxPassword");
+const errorBoxMail = document.querySelector("#errorBoxMail");
+
+
+
+//checking if mail is correct
+function emailPasswordValidator(){
+   
+const mail = mailInput.value;
+const password = passwordInput.value;
+
+const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; 
+const mail_isValid = emailPattern.test(mail); 
+if(!mail_isValid){
+    errorBoxMail.innerText = 'Invalid Email'
+}
+
+const passwordPattern = /^[^\s]{4,}$/;
+const password_isValid = passwordPattern.test(password);
+if(!password_isValid){
+    errorBoxPassword.innerText = 'Password should be minimum of 4 characters and must not include spaces'
+}
+if( password_isValid && mail_isValid){
+    sendData(mail,password);
+}
+}
+
+function initerrorboxMail(){
+    errorBoxMail.innerText = '';
+}
+function initerrorboxPassword(){
+    errorBoxPassword.innerText = '';
+}
+
+async function sendData(mail,password){
+  const response = await fetch('/auth/login',
+  {
+   method: 'POST',
+   headers: {
+    'Content-Type': 'application/json'
+   },
+   body: JSON.stringify({
+    email : mail,
+    password: password
+   })
+  });
+  
+  const data = await response.json();
+  if(data.success){
+    console.log(data.success);  
+    window.location.href='/home';
+  }
+  if(data.msg){
+    errorBoxPassword.innerText= 'Invalid Email or Password';
+  }
+}
+
+//event listeners for buttons
+loginButton.addEventListener('click',emailPasswordValidator);
+mailInput.addEventListener('click',initerrorboxMail);
+passwordInput.addEventListener('click',initerrorboxPassword);
+signupButton2.addEventListener('click',()=>{window.location.href ='/signup';})
+
+
+</script>
+</body>
+</html>
