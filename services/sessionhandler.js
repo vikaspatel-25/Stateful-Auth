@@ -1,8 +1,11 @@
 const User = require("../models/users");
+const {v4:uuidv4} = require("uuid")
 
 
 async function setUser(uid,user){
-
+     if(!uid){
+        uid = uuidv4();
+     }
     let filter = {_id: user};
     let update = { $set:{uid:uid}}
 
