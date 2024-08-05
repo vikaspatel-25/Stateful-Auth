@@ -6,6 +6,10 @@ const bodyParser = require("body-parser");
 async function handleSignup(req, res) {
     const { name, email, password } = req.body;
     try {
+        let valid =  await User.findOne({email})
+        if(valid){
+          return res.json( {invalidmail:'user with this mail already exist'})
+        }
         await User.create({
             name,
             email,
