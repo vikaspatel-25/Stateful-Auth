@@ -63,11 +63,11 @@
     //checking if mail is correct
     function emailPasswordNameValidator(){
        
-    const mail = mailInput.value;
-    const password = passwordInput.value;
+    let mail = mailInput.value;
+    let password = passwordInput.value;
     let name = nameInput.value;
     
-    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/ 
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; 
     const mail_isValid = emailPattern.test(mail); 
     if(!mail_isValid){
         errorBoxMail.innerText = 'Invalid Email'
@@ -91,6 +91,7 @@
     }
     
     if(name_isValid && password_isValid && mail_isValid){
+        mail = mail.toLowerCase();
         console.log("calling method");
         console.log(name);console.log(mail);console.log(password);
         sendData(name,mail,password);
