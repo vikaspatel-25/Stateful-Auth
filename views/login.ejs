@@ -58,10 +58,10 @@ const errorBoxMail = document.querySelector("#errorBoxMail");
 //checking if mail is correct
 function emailPasswordValidator(){
    
-const mail = mailInput.value;
+let mail = mailInput.value;
 const password = passwordInput.value;
 
-const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/; 
+const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; 
 const mail_isValid = emailPattern.test(mail); 
 if(!mail_isValid){
     errorBoxMail.innerText = 'Invalid Email'
@@ -73,6 +73,7 @@ if(!password_isValid){
     errorBoxPassword.innerText = 'Password should be minimum of 4 characters and must not include spaces'
 }
 if( password_isValid && mail_isValid){
+    mail = mail.toLowerCase();
     sendData(mail,password);
 }
 }
